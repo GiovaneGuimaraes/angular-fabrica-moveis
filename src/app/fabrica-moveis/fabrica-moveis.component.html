@@ -1,0 +1,89 @@
+<div class="container">
+  <h1>Fábrica de Móveis</h1>
+  <p>Cliente: {{ cliente.nome }} | Endereço: {{ cliente.endereco }}</p>
+
+  <div class="actions">
+    <div class="section cadeiras">
+      <h3>Cadeiras</h3>
+      <button (click)="adicionarCadeiraArteDeco()">
+        Adicionar Cadeira ArteDeco
+      </button>
+      <button (click)="adicionarCadeiraModerno()">
+        Adicionar Cadeira Moderno
+      </button>
+      <button (click)="adicionarCadeiraVitoriano()">
+        Adicionar Cadeira Vitoriana
+      </button>
+    </div>
+
+    <div class="section sofas">
+      <h3>Sofás</h3>
+      <button (click)="adicionarSofaArteDeco()">Adicionar Sofá ArteDeco</button>
+      <button (click)="adicionarSofaModerno()">Adicionar Sofá Moderno</button>
+      <button (click)="adicionarSofaVitoriano()">
+        Adicionar Sofá Vitoriano
+      </button>
+    </div>
+
+    <div class="section mesas">
+      <h3>Mesas</h3>
+      <button (click)="adicionarMesaCentroArteDeco()">
+        Adicionar Mesa de Centro ArteDeco
+      </button>
+      <button (click)="adicionarMesaCentroModerno()">
+        Adicionar Mesa de Centro Moderno
+      </button>
+      <button (click)="adicionarMesaCentroVitoriano()">
+        Adicionar Mesa de Centro Vitoriana
+      </button>
+    </div>
+  </div>
+
+  <div class="carrinho-finalizar">
+    <button (click)="finalizarCompra()">Finalizar Compra</button>
+  </div>
+
+  <div>
+    <h2>Itens no Carrinho</h2>
+    <div *ngIf="cliente.listarCarrinho().length === 0">Carrinho vazio.</div>
+    <table *ngIf="cliente.listarCarrinho().length > 0">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Estilo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cliente.listarCarrinho()">
+          <td *ngIf="isNotString(item)">
+            {{ item.constructor.name }}
+          </td>
+          <td *ngIf="isNotString(item)">{{ item.estilo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+    <h2>Compras Finalizadas</h2>
+    <div *ngIf="cliente.listarListaComprasFinalizadas().length === 0">
+      Nenhuma compra finalizada.
+    </div>
+    <table *ngIf="cliente.listarListaComprasFinalizadas().length > 0">
+      <thead>
+        <tr>
+          <th>Tipo</th>
+          <th>Estilo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cliente.listarListaComprasFinalizadas()">
+          <td *ngIf="isNotString(item)">
+            {{ item.constructor.name }}
+          </td>
+          <td *ngIf="isNotString(item)">{{ item.estilo }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
